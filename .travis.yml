@@ -12,7 +12,7 @@ before_install:
   - nix-env -i stack
 
 script:
-  - stack --nix --no-terminal test
+  - stack --nix --no-terminal test --pedantic
 
 notifications:
   email: false
