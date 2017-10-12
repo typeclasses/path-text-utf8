@@ -3,6 +3,8 @@
 module Path.Text
   ( readFile'orThrow
   , readFile'either
+  , writeFile'orThrow
+  , writeFile'either
   ) where
 
 -- base
@@ -51,3 +53,11 @@ decode'either bs =
   case TextEncoding.decodeUtf8' bs of
     Left e  -> Left (PathTextError'Encoding e)
     Right t -> Right t
+
+writeFile'orThrow :: Path base Path.File -> Text -> IO ()
+writeFile'orThrow path text =
+  BS.writeFile (Path.toFilePath path) (TextEncoding.encodeUtf8 text)
+
+writeFile'either :: Path base Path.File -> Text -> IO (Either IOError ())
+writeFile'either path text =
+  Exception.tryIO (writeFile'orThrow path text)
