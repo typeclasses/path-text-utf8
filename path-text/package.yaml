@@ -1,0 +1,34 @@
+name: path-text
+version: 0.0.0.1
+github: chris-martin/path-text
+
+synopsis: |
+  Trivial integration of @path@ and @text@.
+
+description: |
+  Trivial integration of the @path@ and @text@ packages,
+  providing convenient functions to read and write UTF-8
+  text files.
+
+category: Filesystem, Text
+
+author:     Chris Martin <ch.martin@gmail.com>
+maintainer: Chris Martin <ch.martin@gmail.com>
+
+license: Apache-2.0
+license-file: license.txt
+
+ghc-options:
+  - -Wall
+
+library:
+  source-dirs: src
+  exposed-modules:
+    - Path.Text
+
+dependencies:
+  - base
+  - bytestring
+  - path
+  - safe-exceptions
+  - text
