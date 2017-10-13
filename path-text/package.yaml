@@ -3,12 +3,12 @@ version: 0.0.0.1
 github: chris-martin/path-text-utf8
 
 synopsis: |
-  Trivial integration of @path@ and @text@.
+  Read and write UTF-8 text files
 
 description: |
-  Trivial integration of the @path@ and @text@ packages,
-  providing convenient functions to read and write UTF-8
-  text files.
+  This is a trivial integration of the @path@ and @text@
+  packages, providing convenient functions to read and
+  write UTF-8 text files.
 
 category: Filesystem, Text
 
