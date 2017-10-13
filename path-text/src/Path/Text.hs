@@ -11,6 +11,7 @@ module Path.Text
 import Control.Applicative (pure)
 import Data.Either         (Either (..))
 import Data.Function       (($))
+import Prelude             (($!))
 import System.IO           (IO)
 import System.IO.Error     (IOError)
 
@@ -38,7 +39,7 @@ readFile'orThrow :: Path base Path.File -> IO Text
 readFile'orThrow path =
   do
     bs <- BS.readFile (Path.toFilePath path)
-    pure (TextEncoding.decodeUtf8 bs)
+    pure $! TextEncoding.decodeUtf8 bs
 
 readFile'either :: Path base Path.File -> IO (Either PathTextError Text)
 readFile'either path =
