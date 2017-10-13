@@ -1,4 +1,4 @@
 resolver: lts-9.8
 
 packages:
-  - path-text
+  - path-text-utf8
