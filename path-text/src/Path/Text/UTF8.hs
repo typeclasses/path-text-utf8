@@ -18,20 +18,16 @@ module Path.Text.UTF8
   ) where
 
 -- base
-import Control.Applicative (pure)
-import Data.Bifunctor      (first)
-import Data.Either         (Either (..))
-import Data.Function       (($))
-import Data.Functor        ((<$>))
-import Prelude             (($!))
-import System.IO           (IO)
-import System.IO.Error     (IOError)
+import Data.Bifunctor  (first)
+import Data.Either     (Either (..))
+import Data.Functor    ((<$>))
+import System.IO       (IO)
+import System.IO.Error (IOError)
 
 -- safe-exceptions
 import qualified Control.Exception.Safe as Exception
 
 -- bytestring
-import           Data.ByteString (ByteString)
 import qualified Data.ByteString as BS
 
 -- text
