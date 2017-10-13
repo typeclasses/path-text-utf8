@@ -5,6 +5,8 @@ module Path.Text
   , readFile'either
   , writeFile'orThrow
   , writeFile'either
+  -- * Error
+  , PathTextError (..)
   ) where
 
 -- base
