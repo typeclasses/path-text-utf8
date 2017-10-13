@@ -1,18 +1,28 @@
+{-# LANGUAGE BangPatterns      #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 
+-- | Reading and writing UTF-8 text files.
 module Path.Text
-  ( readFile'orThrow
-  , readFile'either
-  , writeFile'orThrow
-  , writeFile'either
-  -- * Error
-  , PathTextError (..)
+  (
+  -- * Reading
+    readFile
+  , tryReadFile
+  , ReadError (..)
+  -- * Writing
+  , writeFile
+  , tryWriteFile
+  , WriteError
+  -- * Re-exports
+  , IOError
+  , UnicodeException (DecodeError)
   ) where
 
 -- base
 import Control.Applicative (pure)
+import Data.Bifunctor      (first)
 import Data.Either         (Either (..))
 import Data.Function       (($))
+import Data.Functor        ((<$>))
 import Prelude             (($!))
 import System.IO           (IO)
 import System.IO.Error     (IOError)
@@ -27,40 +37,52 @@ import qualified Data.ByteString as BS
 -- text
 import           Data.Text                (Text)
 import qualified Data.Text.Encoding       as TextEncoding
-import           Data.Text.Encoding.Error (UnicodeException)
+import           Data.Text.Encoding.Error (UnicodeException (..))
 
 -- path
 import           Path (Path)
 import qualified Path
 
-data PathTextError
-  = PathTextError'IO IOError
-  | PathTextError'Encoding UnicodeException
+data ReadError
+  = ReadErrorIO IOError
+  | ReadErrorDecode UnicodeException
 
-readFile'orThrow :: Path base Path.File -> IO Text
-readFile'orThrow path =
-  do
-    bs <- BS.readFile (Path.toFilePath path)
-    pure $! TextEncoding.decodeUtf8 bs
+type WriteError = IOError
 
-readFile'either :: Path base Path.File -> IO (Either PathTextError Text)
-readFile'either path =
-  do
-    x <- Exception.tryIO (BS.readFile (Path.toFilePath path))
-    pure $ case x of
-      Left e -> Left (PathTextError'IO e)
-      Right bs -> decode'either bs
+-- | Read the contents of a UTF-8 encoded text file.
+--
+-- May throw 'IOError' or 'UnicodeException'. To handle these errors in 'Either'
+-- instead, use 'tryReadFile'.
+readFile :: Path base Path.File -> IO Text
+readFile path =
+  f <$> BS.readFile (Path.toFilePath path)
+  where
+    f bs = let !text = TextEncoding.decodeUtf8 bs in text
 
-decode'either :: ByteString -> Either PathTextError Text
-decode'either bs =
-  case TextEncoding.decodeUtf8' bs of
-    Left e  -> Left (PathTextError'Encoding e)
-    Right t -> Right t
+-- | Read the contents of a UTF-8 encoded text file.
+--
+-- Any 'IOError' or 'UnicodeException' that occurs is caught and returned as a
+-- 'ReadError' on the 'Left' side of the 'Either'. To throw these exceptions
+-- instead, use 'readFile'.
+tryReadFile :: Path base Path.File -> IO (Either ReadError Text)
+tryReadFile path =
+  f <$> Exception.tryIO (BS.readFile (Path.toFilePath path))
+  where
+    f (Left e) = Left (ReadErrorIO e)
+    f (Right bs) = first ReadErrorDecode (TextEncoding.decodeUtf8' bs)
 
-writeFile'orThrow :: Path base Path.File -> Text -> IO ()
-writeFile'orThrow path text =
+-- | Write text to a file in a UTF-8 encoding.
+--
+-- May throw 'IOError'. To handle this error in 'Either' instead, use
+-- 'tryWriteFile'.
+writeFile :: Path base Path.File -> Text -> IO ()
+writeFile path text =
   BS.writeFile (Path.toFilePath path) (TextEncoding.encodeUtf8 text)
 
-writeFile'either :: Path base Path.File -> Text -> IO (Either IOError ())
-writeFile'either path text =
-  Exception.tryIO (writeFile'orThrow path text)
+-- | Write text to a file in a UTF-8 encoding.
+--
+-- Any 'IOError' that occurs is caught and returned on the 'Left' side of the
+-- 'Either'.
+tryWriteFile :: Path base Path.File -> Text -> IO (Either WriteError ())
+tryWriteFile path text =
+  Exception.tryIO (writeFile path text)
