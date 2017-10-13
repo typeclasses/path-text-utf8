@@ -1,6 +1,6 @@
-name: path-text
+name: path-text-utf8
 version: 0.0.0.1
-github: chris-martin/path-text
+github: chris-martin/path-text-utf8
 
 synopsis: |
   Trivial integration of @path@ and @text@.
@@ -24,7 +24,7 @@ ghc-options:
 library:
   source-dirs: src
   exposed-modules:
-    - Path.Text
+    - Path.Text.UTF8
 
 dependencies:
   - base

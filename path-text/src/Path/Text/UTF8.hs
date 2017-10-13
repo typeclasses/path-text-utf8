@@ -2,7 +2,7 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
 -- | Reading and writing UTF-8 text files.
-module Path.Text
+module Path.Text.UTF8
   (
   -- * Reading
     readFile
