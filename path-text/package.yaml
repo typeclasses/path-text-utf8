@@ -27,8 +27,8 @@ library:
     - Path.Text.UTF8
 
 dependencies:
-  - base
-  - bytestring
-  - path
-  - safe-exceptions
-  - text
+  - base            >= 4.8  && < 4.10
+  - bytestring      >= 0.10 && < 0.11
+  - path            >= 0.5  && < 0.6
+  - safe-exceptions >= 0.1  && < 0.2
+  - text            >= 1.2  && < 1.3
