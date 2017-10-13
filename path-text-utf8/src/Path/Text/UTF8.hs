@@ -78,7 +78,7 @@ writeFile path text =
 -- | Write text to a file in a UTF-8 encoding.
 --
 -- Any 'IOError' that occurs is caught and returned on the 'Left' side of the
--- 'Either'.
+-- 'Either'. To throw the exception instead, use 'writeFile'.
 tryWriteFile :: Path base Path.File -> Text -> IO (Either WriteError ())
 tryWriteFile path text =
   Exception.tryIO (writeFile path text)
