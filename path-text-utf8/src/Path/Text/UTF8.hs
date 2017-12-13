@@ -84,4 +84,4 @@ tryWriteFile path text =
 
 first :: (a -> a') -> Either a b -> Either a' b
 first f (Left x) = Left (f x)
-first f (Right x) = Right x
+first _ (Right x) = Right x
