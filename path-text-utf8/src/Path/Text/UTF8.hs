@@ -15,6 +15,8 @@ module Path.Text.UTF8
   -- * Re-exports
   , IOError
   , UnicodeException (DecodeError)
+  , parseAbsFile
+  , parseRelFile
   ) where
 
 -- base
@@ -35,7 +37,7 @@ import qualified Data.Text.Encoding       as TextEncoding
 import           Data.Text.Encoding.Error (UnicodeException (..))
 
 -- path
-import           Path (Path)
+import           Path (Path, parseAbsFile, parseRelFile)
 import qualified Path
 
 data ReadError
