@@ -18,7 +18,6 @@ module Path.Text.UTF8
   ) where
 
 -- base
-import Data.Bifunctor  (first)
 import Data.Either     (Either (..))
 import Data.Functor    ((<$>))
 import System.IO       (IO)
@@ -82,3 +81,7 @@ writeFile path text =
 tryWriteFile :: Path base Path.File -> Text -> IO (Either WriteError ())
 tryWriteFile path text =
   Exception.tryIO (writeFile path text)
+
+first :: (a -> a') -> Either a b -> Either a' b
+first f (Left x) = Left (f x)
+first f (Right x) = Right x

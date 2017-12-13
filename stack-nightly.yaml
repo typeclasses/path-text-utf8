@@ -1,0 +1,4 @@
+resolver: nightly-2017-11-10
+
+packages:
+  - path-text-utf8
