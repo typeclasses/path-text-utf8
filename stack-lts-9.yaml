@@ -1,4 +1,0 @@
-resolver: lts-9.9
-
-packages:
-  - path-text-utf8

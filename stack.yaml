@@ -1,1 +1,4 @@
-stack-lts-9.yaml
+resolver: lts-12.11
+
+packages:
+  - path-text-utf8

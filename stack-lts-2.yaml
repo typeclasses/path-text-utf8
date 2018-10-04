@@ -1,8 +1,0 @@
-resolver: lts-2.22
-
-packages:
-  - path-text-utf8
-
-extra-deps:
-  - path-0.6.1
-  - safe-exceptions-0.1.6.0
