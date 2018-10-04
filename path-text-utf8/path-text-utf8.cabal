@@ -38,7 +38,7 @@ library
       Path.Text.UTF8
 
   build-depends:
-      base            >= 4.7  && < 4.12
+      base            >= 4.7  && < 4.13
     , bytestring      >= 0.10 && < 0.11
     , path            >= 0.5  && < 0.7
     , safe-exceptions >= 0.1  && < 0.2
