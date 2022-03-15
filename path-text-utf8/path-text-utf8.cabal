@@ -36,6 +36,6 @@ library
     build-depends:
         base ^>= 4.14 || ^>= 4.15 || ^>= 4.16
       , bytestring ^>= 0.10.6 || ^>= 0.11
-      , path ^>= 0.5 || ^>= 0.6 || ^>= 0.7 || ^>= 0.8
+      , path ^>= 0.8 || ^>= 0.9
       , safe-exceptions >= 0.1.5.0
       , text ^>= 1.2.2
