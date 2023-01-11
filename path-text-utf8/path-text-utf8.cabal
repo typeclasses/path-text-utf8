@@ -20,8 +20,6 @@ copyright: 2017 Mission Valley Software LLC
 license: Apache-2.0
 license-file: license.txt
 
-build-type: Simple
-
 source-repository head
     type: git
     location: https://github.com/typeclasses/path-text-utf8
