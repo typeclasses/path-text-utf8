@@ -1,4 +1,0 @@
-cradle:
-  cabal:
-    - path: "./path-text-utf8/src"
-      component: "lib:path-text-utf8"
