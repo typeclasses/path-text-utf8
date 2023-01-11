@@ -29,9 +29,9 @@ ghc."9.2" = nixos-22-11.haskell.packages.ghc92.override (old: {
     overrides = combineOverrides old [ sourceOverrides depOverrides ];
 });
 
-# ghc."9.4" = nixos-22-11.haskell.packages.ghc94.override (old: {
-#     overrides = combineOverrides old [ sourceOverrides depOverrides ];
-# });
+ghc."9.4" = nixos-22-11.haskell.packages.ghc94.override (old: {
+    overrides = combineOverrides old [ sourceOverrides depOverrides ];
+});
 
 in
 

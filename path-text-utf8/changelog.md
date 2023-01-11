@@ -1,3 +1,7 @@
+### 0.0.1.11 (2023-01-11)
+
+Support GHC 9.4
+
 ### 0.0.1.10 (2022-03-15)
 
 * Shift supported GHC range to 8.10, 9.0, 9.2

@@ -1,7 +1,7 @@
 cabal-version: 3.0
 
 name: path-text-utf8
-version: 0.0.1.10
+version: 0.0.1.11
 category: Filesystem, Text
 
 synopsis: Read and write UTF-8 text files
@@ -36,8 +36,8 @@ library
         Path.Text.UTF8
 
     build-depends:
-      , base ^>= 4.14 || ^>= 4.15 || ^>= 4.16
+      , base ^>= 4.14 || ^>= 4.15 || ^>= 4.16 || ^>= 4.17
       , bytestring ^>= 0.10.12 || ^>= 0.11
       , path ^>= 0.9.2
       , safe-exceptions ^>= 0.1.7
-      , text ^>= 1.2.4
+      , text ^>= 1.2.4 || ^>= 2.0
