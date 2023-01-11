@@ -1,4 +1,0 @@
-packages: path-text-utf8
-
-constraints:
-    base == 4.15.*
