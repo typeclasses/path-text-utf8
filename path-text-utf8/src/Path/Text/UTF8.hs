@@ -1,25 +1,17 @@
 -- | Read and write UTF-8 text files.
 module Path.Text.UTF8
   (
-  -- * Reading
-    readFile
-  , tryReadFile
-  , ReadError (..)
-  -- * Writing
-  , writeFile
-  , tryWriteFile
-  , WriteError
-  -- * Re-exports
-  , IOError
-  , UnicodeException (DecodeError)
-  , parseAbsFile
-  , parseRelFile
-  ) where
+    {- * Reading    -} readFile, tryReadFile, ReadError (..),
+    {- * Writing    -} writeFile, tryWriteFile, WriteError,
+    {- * Re-exports -} IOError, UnicodeException (DecodeError),
+                       parseAbsFile, parseRelFile,
+  )
+  where
 
 -- base
-import Data.Either     (Either (..))
-import Data.Functor    ((<$>))
-import System.IO       (IO)
+import Data.Either (Either (..))
+import Data.Functor ((<$>))
+import System.IO (IO)
 import System.IO.Error (IOError)
 
 -- safe-exceptions
@@ -29,12 +21,12 @@ import qualified Control.Exception.Safe as Exception
 import qualified Data.ByteString as BS
 
 -- text
-import           Data.Text                (Text)
-import qualified Data.Text.Encoding       as TextEncoding
-import           Data.Text.Encoding.Error (UnicodeException (..))
+import Data.Text (Text)
+import Data.Text.Encoding.Error (UnicodeException (..))
+import qualified Data.Text.Encoding as TextEncoding
 
 -- path
-import           Path (Path, parseAbsFile, parseRelFile)
+import Path (Path, parseAbsFile, parseRelFile)
 import qualified Path
 
 data ReadError
