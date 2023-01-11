@@ -1,6 +1,3 @@
-{-# LANGUAGE BangPatterns      #-}
-{-# LANGUAGE NoImplicitPrelude #-}
-
 -- | Read and write UTF-8 text files.
 module Path.Text.UTF8
   (
