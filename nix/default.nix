@@ -25,21 +25,15 @@ let
         })).path-text-utf8;
     in
     rec {
-      ghc-9-2 = makeTestConfiguration {
-        ghcVersion = "ghc92";
-      };
-      ghc-9-4 = makeTestConfiguration {
-        ghcVersion = "ghc94";
-      };
       ghc-9-6 = makeTestConfiguration {
         ghcVersion = "ghc96";
         overrides = new: old: {
-          # x = new.callPackage ./haskell/x.nix { };
+          file-io = new.callPackage ./haskell/file-io.nix { };
         };
       };
       all = pkgs.symlinkJoin {
         name = "path-text-utf8-tests";
-        paths = [ ghc-9-2 ghc-9-4 ghc-9-6 ];
+        paths = [ ghc-9-6 ];
       };
     };
 

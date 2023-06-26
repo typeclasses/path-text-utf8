@@ -1,3 +1,10 @@
+### 0.0.2.0 (2023-06-26)
+
+Add module `OsPath.Text.UTF8`, with the same API but using
+the new `OsPath` type from the `filepath` library.
+
+Minimum GHC version is raised to 9.6.
+
 ### 0.0.1.12 (2023-06-26)
 
 Raise language version to GHC2021
